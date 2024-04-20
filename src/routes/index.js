@@ -44,6 +44,9 @@ app.get("/", async (c) => {
         orderBy: { updatedAt: "desc" },
       })
     : [];
+  schedules.forEach((schedule) => {
+    schedule.formattedUpdatedAt = dayjs(schedule.updatedAt).tz().format("YYYY/MM/DD HH:mm");
+  });
 
   return c.html(
     layout(
